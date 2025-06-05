@@ -101,8 +101,24 @@ In the configuration page, set up the addresses for querying loki error log. Aut
 
 ##### 5\. After completing the configuration, click save. Engineers can now add role list in the Roles Setting page that need to be displayed error log analysis on the Intelligent-Log-Analyzer page.
 
+## FAQ
 
-## Technical Support
+### 1\. Plugin Validation Failed Error
+**Error Message:**
+```
+ERROR[06-05|11:52:27] Plugin validation failed logger=plugins.validation pluginId=skylineintelligence-errorloganalyzer-app error="plugin 'skylineintelligence-errorloganalyzer-app' has an modified signature"
+```
 
-For technical support, please contact our team at:
-support@skyline-intelligence.com
+**Solution:**
+When starting Grafana and encountering this error, please use the Mac command line tool `ls -alF` to check if there are any Mac-generated `.DS_Store` hidden files in the `grafana/data/plugins/skylineintelligence-errorloganalyzer-app` directory. If such files exist, delete them and restart Grafana.
+
+### 2\. macOS Developer Verification Issues
+**Issue:**
+When starting Grafana on macOS, you may encounter a popup saying "Cannot open 'gpx_error_log_analyzer_darwin_amd64' because the developer cannot be verified."
+
+**Solution:**
+1. First, click the "Cancel" button when the popup appears
+2. Go to Mac System Preferences > Security & Privacy
+3. Allow the program that was just blocked
+4. Restart Grafana
+5. When you encounter the popup "macOS cannot verify the developer of 'gpx_error_log_analyzer_darwin_amd64'. Are you sure you want to open it?", click "Open"
