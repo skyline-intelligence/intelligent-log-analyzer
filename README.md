@@ -57,10 +57,11 @@ services:
 ##### 2\. Install Intelligent Log Analyzer plugin  <br>
 Record the domain name or IP address of the analyzer server you just started. When starting the Grafana server, pass the analyzer server address as an environment variable to Grafana using the following command: (The pluginsDir can be customized accordingly)
 ```
-grafana cli --pluginsDir ./data/plugins --pluginUrl https://github.com/skyline-intelligence/intelligent-log-analyzer/releases/download/v1.0.0/skylineintelligence-errorloganalyzer-app-1.0.0.zip --insecure plugins install skylineintelligence-errorloganalyzer-app
+cd $GRAFANA_HOME/bin
+./grafana cli --pluginsDir ../data/plugins --pluginUrl https://github.com/skyline-intelligence/intelligent-log-analyzer/releases/download/v1.0.0/skylineintelligence-errorloganalyzer-app-1.0.0.zip --insecure plugins install skylineintelligence-errorloganalyzer-app
 
 export GF_PLUGINS_ANALYZER_SERVER={your_analyzer_server_address}
-./bin/grafana server
+./grafana server
 ```
 If you're using docker-compose, use the following configuration:
 
