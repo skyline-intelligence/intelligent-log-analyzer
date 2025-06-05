@@ -22,7 +22,7 @@ Intelligent Log Analyzer aims to significantly improve incident identification a
 
 <br> Prepare a Docker environment, install MySQL database, and provide MySQL configuration to the intelligent log analyzer server through environment variables. Start the server using the script:  <br>
 
-```
+```bash
 #!/bin/bash
 docker pull skylinecorp/analyzer:latest
 docker run -d -p 80:80 --name analyzer-container \
@@ -54,6 +54,17 @@ services:
       - "80:80"
     restart: unless-stopped
 ```
+**Note:** If MySQL is installed on the local machine, you can add the following code to the analyzer server startup script:
+
+```bash
+if [ "$(uname)" = "Linux" ]; then 
+   DB_HOST="localhost" 
+ else 
+   DB_HOST="host.docker.internal" 
+ fi
+```
+Modify the {your_mysql_host} to $DB_HOST in the script.
+
 ##### 2\. Install Intelligent Log Analyzer plugin  <br>
 Record the domain name or IP address of the analyzer server you just started. When starting the Grafana server, pass the analyzer server address as an environment variable to Grafana using the following command: (The pluginsDir can be customized accordingly)
 ```
