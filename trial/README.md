@@ -14,7 +14,7 @@ Enter the trial directory, ensure you have the following files in the tr
 - supervisord.conf
 - startup.sh
 - mysql-init.sql
-- sql/ directory with SQL files
+- sql.zip / test data for analyzer_server
 
 ### Step 2: Build and Start Services
 
