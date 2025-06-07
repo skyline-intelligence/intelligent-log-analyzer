@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_DATABASE: analyzer_database
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./0-mysql-init.sql:/docker-entrypoint-initdb.d/0-mysql-init.sql
+
+  analyzer-server:
+    image: skylinecorp/analyzer:latest
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=mysql
+      - DB_PASSWORD=mysql
+      - DB_NAME=analyzer_database
+      - TZ=Asia/Seoul
+      - JAVA_OPTS=-Xms2g -Xmx4g
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mysql
+
+  grafana-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_PLUGINS_ANALYZER_SERVER=http://127.0.0.1:8086
+      - TZ=Asia/Seoul
+    volumes:
+      - ./sql.zip:/app/sql.zip
+      - mysql_data:/var/lib/mysql
+    depends_on:
+      - mysql
+      - analyzer-server
+
+volumes:
+  mysql_data:
