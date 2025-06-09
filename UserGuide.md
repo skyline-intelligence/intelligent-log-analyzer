@@ -59,6 +59,14 @@ After adding custom "Groovy Scripts" , users can later edit these rules on the "
 
 - Note : When editing rules from the "Keywords Grouping" page, users will need to manually input keywords and rawMessage for validation
 
+## 5. Custom Keywords Support in Code
+
+In error logs, you can define custom keywords by wrapping the content with `{{}}` in your code. For example:
+```
+error message: {{connect database tradecore_v001 get error}}
+```
+This way, `connect database tradecore_v001 get error` can be defined as a keyword.
+
 ## Quick Reference
 | Action | Location | Description |
 |--------|----------|-------------|
@@ -66,6 +74,7 @@ After adding custom "Groovy Scripts" , users can later edit these rules on the "
 | Add Roles | Roles Setting Page | Add and order monitoring roles |
 | Keywords Grouping | Error Details Panel | Customize keyword processing with Groovy scripts |
 | Edit Rules | Keywords Grouping Page | Modify existing grouping rules |
+| Custom Keywords | Error Logs | Define keywords using `{{}}` wrapper syntax |
 
 ## Support
 For additional support or troubleshooting, please refer to the main README.md file or contact your system administrator.
