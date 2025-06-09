@@ -48,6 +48,10 @@ docker-compose logs -f
   - Password: mysql
   - Database: analyzer_database<br>
 
+### Step 5: Enable Intelligent Log Analyzer plugin  <br>
+- Log in to Grafana with admin/admin, click on the Plugins option in the left sidebar menu.
+- In the Plugins page, search for "analyzer", then click on the intelligent log analyzer plugin that appears in the search results.
+- Click the Enable button in the upper right corner to activate the intelligent log analyzer plugin. After enabling the plugin, you can go to Intelligent-Log-Analyzer to view the monitoring.
 
 **Important Note:**
 During the first startup, the database will be initialized and a large amount of test data will be imported, which requires some waiting time.
