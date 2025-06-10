@@ -27,31 +27,6 @@ docker-compose build --no-cache
 ```
 docker-compose up -d
 ``` 
-### Step 3: Verify Installation
-
-#### Check service status
-``` 
-docker-compose ps
-``` 
-
-#### View logs
-``` 
-docker-compose logs -f
-``` 
-
-### Step 4: Access the Application
-- Grafana Dashboard : http://localhost:3000
-  - Default credentials: admin/admin
-- Analyzer Server API : http://localhost:8086
-- MySQL Database : localhost:3306
-  - Username: mysql
-  - Password: mysql
-  - Database: analyzer_database<br>
-
-### Step 5: Enable Intelligent Log Analyzer plugin  <br>
-- Log in to Grafana with admin/admin, click on the Plugins option in the left sidebar menu.
-- In the Plugins page, search for "analyzer", then click on the intelligent log analyzer plugin that appears in the search results.
-- Click the Enable button in the upper right corner to activate the intelligent log analyzer plugin. After enabling the plugin, you can go to Intelligent-Log-Analyzer to view the monitoring.
 
 **Important Note:**
 During the first startup, the database will be initialized and a large amount of test data will be imported, which requires some waiting time.
@@ -78,6 +53,39 @@ docker-compose up -d
 ```
 After restarting, Grafana should be able to access the analyzer_server API.
 
+### Step 3: Verify Installation
+
+#### Check service status
+``` 
+docker-compose ps
+``` 
+**Important Note:** After startup, you need to check the container status. There should be 3 Docker instances running:
+- trial_grafana-app_1 (Grafana Dashboard)
+- trial_analyzer-server_1 (Analyzer Server)
+- trial_mysql_1 (MySQL Database)
+
+If you don't see all 3 containers running, you need to:
+1. Stop all containers: `docker-compose down`
+2. Restart all services: `docker-compose up -d`
+
+#### View logs
+``` 
+docker-compose logs -f
+``` 
+
+### Step 4: Access the Application
+- Grafana Dashboard : http://localhost:3000
+  - Default credentials: admin/admin
+- Analyzer Server API : http://localhost:8086
+- MySQL Database : localhost:3306
+  - Username: mysql
+  - Password: mysql
+  - Database: analyzer_database<br>
+
+### Step 5: Enable Intelligent Log Analyzer plugin  <br>
+- Log in to Grafana with admin/admin, click on the Plugins option in the left sidebar menu.
+- In the Plugins page, search for "analyzer", then click on the intelligent log analyzer plugin that appears in the search results.
+- Click the Enable button in the upper right corner to activate the intelligent log analyzer plugin. After enabling the plugin, you can go to Intelligent-Log-Analyzer to view the monitoring.
 
 ### Step 5: Stop and Reset Services
 
