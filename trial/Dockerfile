@@ -31,6 +31,6 @@ COPY startup.sh /app/startup.sh
 
 RUN chmod +x /app/startup.sh
 
-EXPOSE 3000 80 3306
+EXPOSE 3000 8086 3306
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
